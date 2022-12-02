@@ -11,6 +11,20 @@ grid-template-columns: repeat(3, 1fr);
 gap: 2rem;
 
 margin-top: -5rem;
+border: 1px solid red;
+`
 
+export const SummaryCard = styled.div`
+background: ${props => props.theme["gray-600"]};
+border-radius: 6px;
+padding: 2rem;
+
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: ${props => props.theme["gray-300"]};
+}
 
 `
+

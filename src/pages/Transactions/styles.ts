@@ -6,7 +6,7 @@ max-width: 1120px;
 margin: 4rem auto 0;
 padding: 0 1.5rem;
 
-border: 1px solid red;
+
 
 `
 
@@ -16,8 +16,8 @@ export const TransactionsTable = styled.table`
   border-spacing: 0 0.5rem;
   margin-top: 1.5rem;
 
+ /* td = configuração da celulas(colunas) da tabela */
   td{
-    
     padding: 1.25rem 2rem;
     background: ${props => props.theme["gray-700"]};
 
@@ -31,4 +31,14 @@ export const TransactionsTable = styled.table`
       border-bottom-right-radius:6px ;
     }
   }
-`
+`;
+
+// Configuração para mudar o valor de cor de acordo se é entrada ou saida
+interface PriceHighLightProps{
+  variant: 'income' | 'outcome';
+}
+
+
+export const PriceHighLight = styled.span<PriceHighLightProps>`
+color: ${props => props.variant === 'income' ? props.theme["green-300"] : props.theme["red-300"]}
+`;

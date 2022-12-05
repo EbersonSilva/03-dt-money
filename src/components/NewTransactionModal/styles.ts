@@ -22,7 +22,6 @@ transform: translate(-50%, -50%);
 
 form{
   margin-top: 2rem;
-
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -70,5 +69,27 @@ export const CloseButton = styled(Dialog.Close)`
  line-height:0;
  cursor: pointer;
  color: ${props => props.theme["gray-500"]};
+
+`
+
+export const TransactionType = styled.div`
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1rem;
+margin-top: 0.5rem;
+
+`
+
+export const TransactionTypeButton = styled.button`
+background: ${props => props.theme["gray-700"]};
+padding: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+border-radius: 6px;
+cursor: pointer;
+border: 0;
+color: ${props => props.theme["gray-100"]};
 
 `

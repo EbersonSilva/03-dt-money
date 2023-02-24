@@ -1,3 +1,5 @@
+// Estilização do componente de Summary 
+
 import styled, { css } from "styled-components";
 
 export const SummaryContainer = styled.section`

@@ -1,3 +1,5 @@
+// Compondente de Summary, onde esta os card de controle de valores de entrada, saida e Total.
+
 import { SummaryCard, SummaryContainer } from './styles'
 import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from 'phosphor-react'
 

@@ -8,7 +8,26 @@ import { TransactionsContext } from '../../contexts/TransactionsContext'
 export function Summary() {
   //Importação da lista de transações que vem do Context.
   const { transactions } = useContext(TransactionsContext)
-  console.log(transactions)
+  //Configuração de reduce para reduzir o array de transações ára a seguinte estrutura
+  //acc = acumulator
+  //Condição para calcular de total, se o tipo de transação for entrada ou saida
+  const summary = transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type === 'income') {
+        acc.income += transaction.price
+        acc.total += transaction.price //Soma
+      } else {
+        acc.outcome += transaction.price
+        acc.total -= transaction.price //Subtração
+      }
+      return acc
+    },
+    {
+      income: 0,
+      outcome: 0,
+      total: 0
+    }
+  )
 
   return (
     <SummaryContainer>
@@ -18,7 +37,7 @@ export function Summary() {
           <span>Entradas</span>
           <ArrowCircleUp size={32} color="#00b37e" />
         </header>
-        <strong>R$ 17.400,00</strong>
+        <strong>{summary.income}</strong>
       </SummaryCard>
 
       {/* card 2 */}
@@ -27,7 +46,7 @@ export function Summary() {
           <span>Saídas</span>
           <ArrowCircleDown size={32} color="#f75a68" />
         </header>
-        <strong>R$ 1.259,00</strong>
+        <strong>{summary.outcome}</strong>
       </SummaryCard>
 
       {/* card 3 */}
@@ -37,7 +56,7 @@ export function Summary() {
           <span>Total</span>
           <CurrencyDollar size={32} color="#fff" />
         </header>
-        <strong>R$ 16.141,00</strong>
+        <strong>{summary.total}</strong>
       </SummaryCard>
     </SummaryContainer>
   )

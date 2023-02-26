@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { Header } from '../../components/Header' //Importação do componente Header
 import { Summary } from '../../components/Summary'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
 import { SearchForm } from './components/SearchForm'
 import {
   PriceHighLight,
@@ -9,7 +10,8 @@ import {
 } from './styles'
 
 export function Transactions() {
- 
+  // Configuração de importação da lista de transações.
+  const { transactions } = useContext(TransactionsContext)
 
   return (
     <div>

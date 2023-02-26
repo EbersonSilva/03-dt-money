@@ -1,4 +1,6 @@
-import { Children, createContext, ReactNode, useEffect, useState } from "react";
+//Configuração para compartilha a lista de transações com os demais componentes.
+
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 interface Transaction {
   id: number
@@ -9,18 +11,17 @@ interface Transaction {
   createdAt: string
 }
 
-
-interface TransactionContextType{
-  transactions: Transaction[],
+interface TransactionContextType {
+  transactions: Transaction[]
 }
 
-interface TransactionsProviderProps{
+interface TransactionsProviderProps {
   children: ReactNode
 }
 
-export const TransactionContext = createContext({} as TransactionContextType)
+export const TransactionsContext = createContext({} as TransactionContextType)
 
-export function TransactionsProvider({children}:TransactionsProviderProps){
+export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
   async function loadTransactions() {
@@ -33,9 +34,9 @@ export function TransactionsProvider({children}:TransactionsProviderProps){
   useEffect(() => {
     loadTransactions()
   }, [])
-  return(
-    <TransactionContext.Provider value={{transactions:[]}}>
+  return (
+    <TransactionsContext.Provider value={{ transactions }}>
       {children}
-    </TransactionContext.Provider>
+    </TransactionsContext.Provider>
   )
 }

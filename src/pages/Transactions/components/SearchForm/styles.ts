@@ -31,8 +31,17 @@ button{
   color: ${props => props.theme["green-300"]};
   font-weight: bold;
   border-radius: 6px;
+  cursor: pointer;
 
-  &:hover{
+  //Estilização para o botão de Buscar quandp esta desabilitado
+  &:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+
+//Estilização para não dar Hover quando o botão esta desabilitado.
+  &:not(:disabled)hover{
     background: ${props => props.theme["green-500"]};
   border: 1px solid ${props => props.theme["green-500"]};
   color: ${props => props.theme["white"]};

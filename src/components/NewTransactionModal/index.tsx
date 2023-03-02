@@ -1,8 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog' //Importa a biblioteca Radix-ui.
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react' //Importa os icones.
+import { useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form' // Importação do react-hook-form.
 import * as z from 'zod'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
+import { api } from '../../lib/axios'
 import {
   CloseButton,
   Content,
@@ -22,11 +25,13 @@ const newTransactionFormSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export function NewTransactionModal() {
+  const { createTransaction } = useContext(TransactionsContext)
   const {
     control,
     register,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting },
+    reset
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionFormSchema),
     defaultValues: {
@@ -35,9 +40,18 @@ export function NewTransactionModal() {
     }
   })
 
+  //Configuração para enviar dados do formulario newTransaction para o server.json.
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    console.log(data)
+    const { description, price, category, type } = data
+    //Caminho para onde vai as informacões de transactions.
+    await createTransaction({
+      description,
+      price,
+      category,
+      type
+    })
+    //Reet no formulario depois do envio dos dados
+    reset()
   }
 
   return (

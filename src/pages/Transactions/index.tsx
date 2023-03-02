@@ -1,4 +1,4 @@
-import { useContext } from 'react' //Importação do Context de transaçoes
+import { useContextSelector } from 'use-context-selector' //Importação do Context de transaçoes
 import { Header } from '../../components/Header' //Importação do componente Header
 import { Summary } from '../../components/Summary'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
@@ -12,7 +12,9 @@ import {
 
 export function Transactions() {
   // Configuração de importação da lista de transações.
-  const { transactions } = useContext(TransactionsContext)
+  const transactions = useContextSelector(TransactionsContext, context => {
+    return context.transactions
+  })
 
   return (
     <div>

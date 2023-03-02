@@ -1,6 +1,7 @@
 //Configuração para compartilha a lista de transações com os demais componentes.
 
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
+import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios' // Importação do axios
 
 interface Transaction {

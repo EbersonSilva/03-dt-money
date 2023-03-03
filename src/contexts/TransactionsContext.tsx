@@ -1,6 +1,6 @@
 //Configuração para compartilha a lista de transações com os demais componentes.
 
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState, useCallback } from 'react'
 import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios' // Importação do axios
 
@@ -36,34 +36,38 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
   //Configuração da busca de transactions .
 
-  async function fetchTransactions(query?: string) {
+  const fetchTransactions = useCallback(async (query?: string) => {
     const response = await api.get('/transactions', {
       params: {
-        _sort: 'createdAt', //CVonfiguração de ordem de acriação a lista de transações.
+        _sort: 'createdAt', //Configuração de ordem de acriação a lista de transações.
         _order: 'desc',
         q: query
       }
     })
 
     setTransactions(response.data)
-  }
+  }, [])
 
-  async function createTransaction(data: CreateTransactionInput) {
-    const { description, price, category, type } = data
+  //O Hook useCallback serve para evitar que a função seja recriada em memoria.
+  const createTransaction = useCallback(
+    async (data: CreateTransactionInput) => {
+      const { description, price, category, type } = data
 
-    const response = await api.post('transactions', {
-      description,
-      price,
-      category,
-      type,
-      createdAt: new Date()
-    })
-    setTransactions(state => [response.data, ...state])
-  }
+      const response = await api.post('transactions', {
+        description,
+        price,
+        category,
+        type,
+        createdAt: new Date()
+      })
+      setTransactions(state => [response.data, ...state])
+    },
+    []
+  )
 
   useEffect(() => {
     fetchTransactions()
-  }, [])
+  }, [fetchTransactions])
   return (
     <TransactionsContext.Provider
       value={{

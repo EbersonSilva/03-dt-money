@@ -39,6 +39,14 @@
       "type": "outcome",
       "createdAt": "2023-03-02T02:02:18.605Z",
       "id": 5
+    },
+    {
+      "description": "Academia ",
+      "price": 99,
+      "category": "Bem estar",
+      "type": "outcome",
+      "createdAt": "2023-03-03T01:02:15.682Z",
+      "id": 6
     }
   ]
 }

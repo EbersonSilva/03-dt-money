@@ -1,0 +1,52 @@
+{
+  "Transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2023-02-25T00:34:57.193Z"
+    },
+    {
+      "id": 2,
+      "description": "Hamburger",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 50,
+      "createdAt": "2023-02-25T00:34:10.193Z"
+    },
+    {
+      "id": 3,
+      "description": "Ignite Rocketseat",
+      "type": "outcome",
+      "category": "Educação",
+      "price": 1980,
+      "createdAt": "2023-02-25T00:21:45.193Z"
+    },
+    {
+      "description": "Jogo Call of Duty",
+      "price": 80,
+      "category": "Diversão",
+      "type": "income",
+      "createdAt": "2023-03-02T01:38:08.522Z",
+      "id": 4
+    },
+    {
+      "description": "Mesa de cozinha ",
+      "price": 900,
+      "category": "Moveis",
+      "type": "outcome",
+      "createdAt": "2023-03-02T02:02:18.605Z",
+      "id": 5
+    },
+    {
+      "description": "Academia ",
+      "price": 99,
+      "category": "Bem estar",
+      "type": "outcome",
+      "createdAt": "2023-03-03T01:02:15.682Z",
+      "id": 6
+    }
+  ]
+}
